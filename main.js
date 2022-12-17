@@ -4,7 +4,7 @@ const main = async () => {
   .then((res) => {
     res.json().then((value) => {
       const messageElement = document.getElementById("message");
-      messageElement.innerHTML = value;
+      messageElement.innerHTML = value.message;
     });
   }).catch((e) => {
     console.error(JSON.stringify(e));
