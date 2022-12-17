@@ -13,7 +13,12 @@ const loadTasks = async () => {
 
     // レスポンスからデータを取得する
     res.json().then((responseData) => {
-      
+
+      // すでに保存してある行を削除する
+      while(tasksTableBodyElement.firstChild) {
+        tasksTableBodyElement.removeChild(tasksTableBodyElement.firstChild);
+      }
+
       // タスク一覧をテーブルの形に変換する
       responseData.tasks.forEach((task) => {
         const titleTdElement = document.createElement("td");
@@ -56,16 +61,14 @@ const registerTask = async () => {
       return;
     }
 
-    // タスク一覧を一度削除する
-    while(tasksTableBodyElement.firstChild) {
-      tasksTableBodyElement.removeChild(tasksTableBodyElement.firstChild);
-    }
-
     // 再取得をする
     loadTasks();
 
     // テキストボックスの中身を消す
     taskTitleInputElement.value = "";
+
+    // テキストボックスにフォーカスさせる
+    taskTitleInputElement.focus();
 
   }).catch((e) => {
     alert("エラーが発生しました");
