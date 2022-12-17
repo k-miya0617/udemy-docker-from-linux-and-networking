@@ -56,6 +56,11 @@ const registerTask = async () => {
       return;
     }
 
+    // タスク一覧を一度削除する
+    while(tasksTableBodyElement.firstChild) {
+      tasksTableBodyElement.removeChild(tasksTableBodyElement.firstChild);
+    }
+
     // 再取得をする
     loadTasks();
 
